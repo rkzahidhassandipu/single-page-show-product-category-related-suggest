@@ -7,7 +7,7 @@ const Navbar = () => {
            <div className='w-4/5 mx-auto flex justify-between items-center box-border text-white'>
                 <div className='font-bold text-2xl cursor-pointer w-1/3'>E-Commerce</div>
                 <div className='w-1/3'>
-                    <input className='w-full outline-none' type="text" placeholder='Search Products' />
+                    <input className='w-full outline-none px-3 py-2 rounded' type="text" placeholder='Search Products' />
                 </div>
                 <div className=' w-1/3 text-right '>Cart</div>
            </div>
