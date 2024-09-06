@@ -1,15 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <div>
         <div className='bg-blue-500 py-4 w-full'>
            <div className='w-4/5 mx-auto flex justify-between items-center box-border text-white'>
-                <div className='font-bold text-2xl cursor-pointer w-1/3'>E-Commerce</div>
+                <div className='font-bold text-2xl cursor-pointer w-1/3'>
+                  <Link to='/'>E-Commerce</Link>
+                </div>
                 <div className='w-1/3'>
                     <input className='w-full outline-none px-3 py-2 rounded' type="text" placeholder='Search Products' />
                 </div>
-                <div className=' w-1/3 text-right '>Cart</div>
+                <div className=' w-1/3 text-right '>
+                  <Link to={'/cart'}>Cart</Link>
+                </div>
            </div>
         </div>
         
