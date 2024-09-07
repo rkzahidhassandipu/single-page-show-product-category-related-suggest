@@ -1,15 +1,14 @@
 import React from 'react'
 import Navbar from './components/Navbar'
-import Products from './components/Products'
 import { Outlet } from 'react-router-dom'
-import Cart from './components/Cart'
+import { Provider } from './Context/Context'
 
 const App = () => {
   return (
-    <>
+    <Provider>
       <Navbar />
       <Outlet />
-    </>
+    </Provider>
   )
 }
 
