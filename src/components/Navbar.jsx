@@ -1,9 +1,16 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../Context/Context'; // Correct path to Context
 
 const Navbar = () => {
+  const navigat = useNavigate();
     const { filterByCategory } = useContext(ProductContext);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const handleSearch = (e) => {
+      e.preventDefault();
+      navigat(`/search/${searchTerm}`)
+    }
 
     return (
         <div className='sticky top-0 z-10'>
@@ -13,7 +20,9 @@ const Navbar = () => {
                         <Link to='/'>E-Commerce</Link>
                     </div>
                     <div className='w-1/3'>
-                        <input className='w-full outline-none px-3 py-2 rounded' type="text" placeholder='Search Products' />
+                        <form action="" onSubmit={handleSearch}>
+                          <input className='w-full outline-none text-black px-3 py-2 rounded' type="text" placeholder='Search Products' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                        </form>
                     </div>
                     <div className='w-1/3 text-right'>
                         <Link to={'/cart'}>Cart</Link>

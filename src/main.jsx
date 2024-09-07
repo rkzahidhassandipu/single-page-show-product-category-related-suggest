@@ -11,6 +11,7 @@ import SingleProduct from "./components/SingleProduct";
 import Cart from "./components/Cart";
 import NotFound from "./components/NotFound";
 import { items } from "./components/Data";
+import SearchItems from "./components/SearchItems"
 items
 
 const router = createBrowserRouter([
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/search/:term',
-        element: <Cart />
+        element: <SearchItems />
       },
       {
         path: '*',
