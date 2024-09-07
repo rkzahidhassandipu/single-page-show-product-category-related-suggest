@@ -10,11 +10,14 @@ const SingleProduct = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    const productsFilter = items.filter((product) => product.id === state);
-    const relatedProducts = items.filter((allCategory) => allCategory.id === state.category);
-    setProduct(productsFilter);
-    setRelatedProducts(relatedProducts)
-  }, [])
+    const filteredProduct = items.find((item) => item.id === state?.id);
+    setProduct(filteredProduct);
+
+    if(filteredProduct){
+      const related = items.filter((item) => item.category === filteredProduct.category && item.id !== filteredProduct.id);
+      setRelatedProducts(related)
+    }
+  }, [state])
   return (
     <div className='w-4/5 mx-auto my-20'>
       <h1 className='text-2xl font-semibold'>Products Details:</h1>
@@ -36,7 +39,31 @@ const SingleProduct = () => {
           ) : (<p>Product not found</p>)
         } 
       </div>
-      <Products state={relatedProducts} />
+      <div>
+        <h1 className='text-2xl font-semibold'>Related Products: </h1>
+        {
+          relatedProducts.length > 0 ? (
+            <div className='grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-6 my-10'>
+              {
+                relatedProducts.map((relatedProduct) => (
+                  
+                  <article className='border bg-slate-100 rounded-lg cursor-pointer hover:shadow-2xl duration-300' key={relatedProduct.id}>
+                    <img className='w-4/5 mx-auto max-h-80' src={relatedProduct.imgSrc} alt="" />
+                    <div className='p-3'>
+                        <h1 className='font-bold'>{relatedProduct.title}</h1>
+                        <p className='text-gray-400'>{relatedProduct.description}</p>
+                        <div className='my-3 flex relative bottom-0'>
+                            <p className='p-3 mx-2 bg-blue-500 w-1/3 text-center font-semibold text-white rounded-md'>$ {relatedProduct.price}</p>
+                            <button className='p-3 mx-2 bg-yellow-500 w-1/3 text-center font-semibold text-white rounded-md'>Add to Cart</button>
+                        </div>
+                    </div>
+                  </article>
+                ))
+              }
+            </div>
+          ) : (<p>Products not Found</p>)
+        }
+      </div>
     </div>
   )
 }
