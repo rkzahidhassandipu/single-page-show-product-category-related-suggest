@@ -2,7 +2,8 @@ import React from 'react'
 import {items} from './Data'
 import { Link } from 'react-router-dom'
 
-const Products = () => {
+const Products = ({filteredProducts}) => {
+    const productsToDisplay = filteredProducts || items;
   return (
     <div className='w-4/5 mx-auto'>
         <div className='grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 gap-6 my-10'>

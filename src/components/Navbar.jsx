@@ -1,15 +1,17 @@
 import React, { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ProductContext } from '../Context/Context'; // Correct path to Context
+import { items } from './Data';
 
 const Navbar = () => {
   const navigat = useNavigate();
     const { filterByCategory } = useContext(ProductContext);
-    const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState([]);
 
     const handleSearch = (e) => {
       e.preventDefault();
       navigat(`/search/${searchTerm}`)
+      setSearchTerm('')
     }
 
     return (
